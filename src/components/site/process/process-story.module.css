@@ -1,0 +1,495 @@
+.pageRoot {
+  margin-top: -5.5rem;
+  padding-top: 5.5rem;
+  color: var(--foreground);
+}
+
+.scrollTrack {
+  position: relative;
+  z-index: 0;
+  margin-top: -5.5rem;
+  background: var(--background);
+}
+
+.stickyStage {
+  position: sticky;
+  top: 0;
+  isolation: isolate;
+  display: flex;
+  width: 100%;
+  height: 100svh;
+  min-height: 40rem;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--background);
+}
+
+.mediaLayers,
+.mediaLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.mediaLayers {
+  z-index: -1;
+  overflow: hidden;
+  background: var(--muted);
+}
+
+.mediaLayer {
+  overflow: hidden;
+  transform: scale(1.025);
+  will-change: transform, opacity;
+}
+
+.mediaLayer :global(img) {
+  object-fit: cover;
+}
+
+.outgoing {
+  opacity: 1;
+}
+
+.incoming {
+  opacity: 0;
+}
+
+.sceneIntro {
+  position: absolute;
+  z-index: 1;
+  top: clamp(7rem, 12vh, 9rem);
+  left: var(--page-gutter);
+  max-width: min(36rem, 50vw);
+  padding: clamp(1.1rem, 2.2vw, 1.75rem);
+  border: 1px solid color-mix(in srgb, var(--foreground) 15%, transparent);
+  border-radius: var(--radius-xl);
+  background: color-mix(in srgb, var(--background) 94%, transparent);
+  color: var(--foreground);
+}
+
+.sceneIntro h2 {
+  margin-top: 0.55rem;
+  font-family: var(--font-display-family), serif;
+  font-size: clamp(2rem, 4.1vw, 4.1rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.sceneIntro > p:last-child:not(.type-caption) {
+  max-width: 52ch;
+  margin-top: 0.8rem;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  line-height: 1.55;
+}
+
+.stepPanel {
+  position: relative;
+  z-index: 2;
+  width: min(52rem, calc(100% - 2 * var(--page-gutter)));
+  max-height: calc(100svh - 18rem);
+  margin: 0 var(--page-gutter) clamp(2rem, 5vh, 4rem);
+  padding: clamp(1.25rem, 2.7vw, 2.5rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid color-mix(in srgb, var(--foreground) 15%, transparent);
+  border-radius: var(--radius-xl);
+  background: color-mix(in srgb, var(--background) 96%, transparent);
+  color: var(--foreground);
+}
+
+.stepMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.counter {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+}
+
+.flapHeading {
+  min-height: 1.05em;
+  margin-top: 0.8rem;
+  overflow: visible;
+  font-family: var(--font-display-family), serif;
+  font-size: clamp(2.65rem, 6vw, 5.6rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.flapCells {
+  display: inline;
+  perspective: 900px;
+}
+
+.flapCell {
+  position: relative;
+  display: inline-grid;
+  min-width: 0;
+  transform-style: preserve-3d;
+  perspective: 900px;
+}
+
+.flapCell[data-has-source="false"] .oldFace {
+  display: none;
+}
+
+.flapCell[data-has-target="false"] .newFace {
+  display: none;
+}
+
+.flapFace {
+  grid-area: 1 / 1;
+  display: inline-block;
+  min-width: 0.36em;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  white-space: pre;
+  will-change: transform, opacity;
+}
+
+.oldFace {
+  opacity: 1;
+  transform: rotateX(0deg);
+}
+
+.newFace {
+  opacity: 0;
+  transform: rotateX(90deg);
+}
+
+.stepTextLayers {
+  display: grid;
+  max-width: 58ch;
+  margin-top: clamp(0.75rem, 1.8vw, 1.25rem);
+}
+
+.stepText {
+  grid-area: 1 / 1;
+  will-change: transform, opacity;
+}
+
+.outgoingText {
+  opacity: 1;
+}
+
+.incomingText {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.summary {
+  font-size: clamp(1.05rem, 1.45vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.description {
+  display: -webkit-box;
+  max-width: 58ch;
+  margin-top: 0.65rem;
+  overflow: hidden;
+  color: var(--muted-foreground);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.secondaryCaption {
+  margin-top: 0.65rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.035em;
+}
+
+.progressArea {
+  margin-top: 1.3rem;
+}
+
+.progressBar {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--foreground) 18%, transparent);
+}
+
+.progressFill {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: var(--foreground);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.readButton {
+  position: absolute;
+  z-index: 3;
+  top: 6.3rem;
+  right: var(--page-gutter);
+  display: inline-flex;
+  min-height: 2.9rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--foreground) 24%, transparent);
+  border-radius: var(--radius-xl);
+  background: var(--background);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 0.875rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease;
+}
+
+.readButton:hover {
+  transform: translateY(-2px);
+}
+
+.readButton:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+
+.readingFlow {
+  width: 100%;
+  margin-top: -5.5rem;
+  padding: clamp(5.5rem, 9vw, 8.5rem) var(--page-gutter) clamp(4rem, 8vw, 7rem);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.readingHeader {
+  max-width: 68rem;
+  margin-inline: auto;
+}
+
+.readingHeader h1 {
+  margin-top: 0.7rem;
+}
+
+.intro {
+  max-width: 60ch;
+  margin-top: 1.25rem;
+  font-size: 1.05rem;
+}
+
+.contactLink {
+  display: inline-flex;
+  min-height: 2.9rem;
+  align-items: center;
+  margin-top: 1.6rem;
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius-xl);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 160ms ease;
+}
+
+.contactLink:hover {
+  transform: translateY(-2px);
+}
+
+.readingList {
+  display: grid;
+  max-width: 84rem;
+  margin: clamp(2.5rem, 6vw, 5rem) auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.readingItem {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6rem);
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+  border-top: 1px solid var(--border);
+}
+
+.readingItem:nth-child(even) .readingImage {
+  order: 2;
+}
+
+.readingImage {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--muted);
+}
+
+.readingImageElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.readingCopy {
+  max-width: 36rem;
+}
+
+.readingCopy h2 {
+  margin-top: 0.65rem;
+  font-family: var(--font-display-family), serif;
+  font-size: clamp(2rem, 3.7vw, 3.75rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.readingSummary {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.readingDescription {
+  margin-top: 0.65rem;
+  color: var(--muted-foreground);
+  font-size: 1rem;
+}
+
+.readingCopy .secondaryCaption {
+  color: var(--muted-foreground);
+}
+
+.screenReaderOnly {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.emptyHero {
+  position: relative;
+  margin-top: -5.5rem;
+  display: flex;
+  min-height: min(100svh, 58rem);
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--muted);
+}
+
+.emptyHeroImage {
+  object-fit: cover;
+}
+
+.emptyHeroCopy {
+  position: relative;
+  z-index: 1;
+  width: min(52rem, calc(100% - 2 * var(--page-gutter)));
+  margin: clamp(6rem, 14vh, 10rem) var(--page-gutter) clamp(3rem, 8vh, 6rem);
+  padding: clamp(1.5rem, 3.4vw, 3rem);
+  border: 1px solid color-mix(in srgb, var(--background) 30%, transparent);
+  border-radius: var(--radius-xl);
+  background: color-mix(in srgb, var(--background) 94%, transparent);
+  color: var(--foreground);
+}
+
+.emptyHeroCopy h1 {
+  margin-top: 0.6rem;
+}
+
+@media (max-width: 63.999rem), (prefers-reduced-motion: reduce) {
+  .scrollTrack {
+    display: none;
+  }
+
+  .screenReaderOnly {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: clamp(5.5rem, 9vw, 8.5rem) var(--page-gutter) clamp(4rem, 8vw, 7rem) !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .readingItem {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.4rem;
+    padding-block: 2rem;
+  }
+
+  .readingItem:nth-child(even) .readingImage {
+    order: 0;
+  }
+
+  .readingImage {
+    aspect-ratio: 4 / 3;
+  }
+
+  .emptyHero {
+    min-height: max(42rem, 100svh);
+  }
+
+  .emptyHeroCopy {
+    width: calc(100% - 2 * var(--page-gutter));
+  }
+}
+
+@media (max-height: 48rem) and (min-width: 64rem) and (prefers-reduced-motion: no-preference) {
+  .stickyStage {
+    min-height: 34rem;
+  }
+
+  .sceneIntro {
+    top: 6.5rem;
+    max-width: min(30rem, 42vw);
+  }
+
+  .sceneIntro h2 {
+    font-size: clamp(1.8rem, 3.2vw, 3rem);
+  }
+
+  .stepPanel {
+    max-height: calc(100svh - 13rem);
+    max-width: 46rem;
+    margin-bottom: 1.5rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .flapHeading {
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+  }
+
+  .readButton {
+    top: 5.5rem;
+  }
+}
+
+@media (min-width: 64rem) and (prefers-reduced-motion: reduce) {
+  .readButton,
+  .contactLink {
+    transition: none;
+  }
+}

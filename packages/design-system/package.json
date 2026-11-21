@@ -1,0 +1,20 @@
+{
+  "name": "@fs/design-system",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.css": "./generated/tokens.css"
+  },
+  "scripts": {
+    "generate": "node --experimental-strip-types src/generate.ts",
+    "test": "node --experimental-strip-types --test src/theme.test.ts"
+  },
+  "dependencies": {
+    "culori": "4.0.2"
+  },
+  "devDependencies": {
+    "@types/culori": "4.0.1"
+  }
+}

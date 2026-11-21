@@ -1,0 +1,222 @@
+.heroBackground {
+  overflow: hidden;
+  pointer-events: none;
+}
+.heroContent {
+  min-height: calc(100svh - 5.5rem);
+}
+.heroBackgroundImage {
+  object-fit: cover;
+  object-position: center;
+  animation: portfolio-background-drift 32s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+.heroBackgroundVideo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.heroBackground[data-paused="true"] .heroBackgroundImage {
+  animation-play-state: paused;
+}
+.heroScrim {
+  background: color-mix(in srgb, var(--foreground) 18%, transparent);
+}
+.heroMotionToggle {
+  position: absolute;
+  right: var(--page-gutter);
+  bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
+  z-index: 2;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--background);
+  color: var(--foreground);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  pointer-events: auto;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+.heroMotionToggle:hover {
+  transform: translateY(-1px);
+}
+.heroMotionToggle:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+@keyframes portfolio-background-drift {
+  from {
+    transform: scale(1.035) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.13) translate3d(-1.5%, -0.5%, 0);
+  }
+}
+.heroCopy {
+  animation: portfolio-hero-enter 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  border: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
+  background: color-mix(in srgb, var(--background) 94%, transparent);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+}
+.projectCardLink {
+  transition: transform 380ms cubic-bezier(0.34, 1.36, 0.48, 1);
+}
+.projectCardLink:hover {
+  transform: translateY(-2px);
+}
+.projectCardLink:active {
+  transform: translateY(0);
+}
+.galleryThumb {
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  cursor: zoom-in;
+  touch-action: manipulation;
+}
+@keyframes portfolio-hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: minmax(3rem, 1fr) minmax(0, min(82vw, 76rem)) minmax(3rem, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: max(clamp(1rem, 3vw, 2.5rem), env(safe-area-inset-top, 0px))
+    max(clamp(1rem, 3vw, 2.5rem), env(safe-area-inset-right, 0px))
+    max(clamp(1rem, 3vw, 2.5rem), env(safe-area-inset-bottom, 0px))
+    max(clamp(1rem, 3vw, 2.5rem), env(safe-area-inset-left, 0px));
+  background: color-mix(in srgb, var(--foreground) 94%, transparent);
+  color: var(--background);
+  animation: gallery-in 180ms ease-out;
+}
+.lightboxImage {
+  position: relative;
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  height: min(78vh, 58rem);
+}
+.closeButton,
+.navButton {
+  min-height: 44px;
+  border: 1px solid color-mix(in srgb, var(--background) 36%, transparent);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+.closeButton:hover,
+.navButton:hover {
+  background: color-mix(in srgb, var(--background) 12%, transparent);
+  transform: translateY(-1px);
+}
+.closeButton:focus-visible,
+.navButton:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+.closeButton {
+  grid-column: 1/-1;
+  justify-self: end;
+}
+.navButton {
+  grid-row: 2;
+}
+.previous {
+  grid-column: 1;
+}
+.next {
+  grid-column: 3;
+}
+.counter {
+  grid-column: 1/-1;
+  grid-row: 3;
+  justify-self: center;
+  font-size: 0.8rem;
+}
+@keyframes gallery-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 640px) {
+  .lightbox {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 0.75rem;
+  }
+  .lightboxImage {
+    grid-column: 1/-1;
+    grid-row: 2;
+    height: 68vh;
+  }
+  .previous {
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: start;
+  }
+  .next {
+    grid-column: 2;
+    grid-row: 3;
+    justify-self: end;
+  }
+  .counter {
+    grid-column: 1/-1;
+    grid-row: 4;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heroBackgroundImage {
+    animation: none;
+    transform: none;
+  }
+  .heroMotionToggle {
+    display: none;
+  }
+  .heroCopy,
+  .projectCardLink {
+    animation: none;
+    transition: none;
+  }
+  .projectCardLink:hover,
+  .projectCardLink:active,
+  .closeButton:hover,
+  .navButton:hover {
+    transform: none;
+  }
+  .lightbox {
+    animation: none;
+  }
+  .closeButton,
+  .navButton {
+    transition: none;
+  }
+}

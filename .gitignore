@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+**/node_modules/
+**/dist/
 /.pnp
 .pnp.*
 .yarn/*
@@ -12,6 +14,9 @@
 
 # testing
 /coverage
+/test-results/
+# Local design-skill browser profiles and screenshots are not project source.
+/.taste-skill/
 
 # next.js
 /.next/

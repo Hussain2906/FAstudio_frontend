@@ -1,0 +1,26 @@
+@keyframes service-card-enter {
+  from {
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .firstCard {
+    animation: service-card-enter 440ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .secondCard {
+    animation: service-card-enter 500ms 70ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .firstCard,
+  .secondCard {
+    animation: none;
+  }
+}

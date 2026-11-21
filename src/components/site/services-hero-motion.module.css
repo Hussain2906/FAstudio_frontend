@@ -1,0 +1,36 @@
+@keyframes services-hero-copy-enter {
+  from {
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes services-hero-image-enter {
+  from {
+    transform: scale(1.035);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .heroCopy {
+    animation: services-hero-copy-enter 560ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .heroImage {
+    animation: services-hero-image-enter 900ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroCopy,
+  .heroImage {
+    animation: none;
+  }
+}
